@@ -1,0 +1,16 @@
+---
+title: "Assessment Report"
+author: "Jack Westmoreland"
+date: "2024-11-01"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = normalizePath('..'))
+```
+
+```{r}
+library(ProjectTemplate)
+load.project()
+```
