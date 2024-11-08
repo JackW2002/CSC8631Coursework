@@ -10,12 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = normalizePath('..'))
 ```
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 library(ProjectTemplate)
 load.project()
 ```
 
-idea: - check how each archetype interacts with videos, questions, steps etc.
-- Are question results a good indicator of the sutudents overall performance?
-- compare video watch time to question response accuracy ***
-- which archetypes werte best at quizzes?
+idea: - check how each archetype interacts with videos, questions, steps etc. - Are question results a good indicator of the sutudents overall performance? - compare video watch time to question response accuracy \*\*\* - which archetypes werte best at quizzes?
+
+# Introduction
+
+Newcastle University have completed seven runs of Cyber Security: Safety At Home, Online, and in Life, A MOOC (massive open online course) teaching cyber security concepts to the public. This report aims to explore the data collected from these runs to be able to provide important analytics and valuable insights into the online learning environments and to further optimist online tea teaching. To achieve this two cycles of CRISP-DM will be completed, hopefully providing valuable insight into the provided data set.
