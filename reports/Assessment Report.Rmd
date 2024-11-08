@@ -2,6 +2,7 @@
 title: "Assessment Report"
 author: "Jack Westmoreland"
 date: "2024-11-01"
+bibliography: references.bib
 output: pdf_document
 ---
 
@@ -20,3 +21,21 @@ idea: - check how each archetype interacts with videos, questions, steps etc. - 
 # Introduction
 
 Newcastle University have completed seven runs of Cyber Security: Safety At Home, Online, and in Life, A MOOC (massive open online course) teaching cyber security concepts to the public. This report aims to explore the data collected from these runs to be able to provide important analytics and valuable insights into the online learning environments and to further optimist online tea teaching. To achieve this two cycles of CRISP-DM will be completed, hopefully providing valuable insight into the provided data set.
+
+# CRISP-DM Cycle 1
+
+## Business Understanding
+
+This section of CRISP-DM entails defining a problem we would like to solve for our data set, then setting the tasks and success criteria which must be completed for the set out problem to be solved.
+
+### Objective
+
+With the prevalence of online learning increasing in recent years [@chs2024] being able to predict learning outcomes of students from the data we can collect could prove very useful for online educators. Being able to predict learner outcome from their interactions with online courses could allow for educators to "check up" on students who have poor predicted performance; providing further guidance and support, increasing learner outcomes. Therefore being able to find some predictors of learner outcomes would provide beneficial for Newcastle Universities online education programs.
+
+### Success Criteria
+
+For this EDA to succeed some strong predictor of learning outcomes should be identified from the provided data set. This predictor must be measurable for students before the completion of the course to allow for intervention. Furthermore, ideally the measurement should be takeble for each student individually so that each students predicted performance can be personalized to them. In a simple sentence the goal of this CRISP-DM cycle should be:
+
+**"Can we predict individual student performance from their data?"**
+
+## References
