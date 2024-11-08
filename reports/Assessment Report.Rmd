@@ -14,3 +14,8 @@ knitr::opts_knit$set(root.dir = normalizePath('..'))
 library(ProjectTemplate)
 load.project()
 ```
+
+idea: - check how each archetype interacts with videos, questions, steps etc.
+- Are question results a good indicator of the sutudents overall performance?
+- compare video watch time to question response accuracy ***
+- which archetypes werte best at quizzes?
