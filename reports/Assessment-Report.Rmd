@@ -44,4 +44,8 @@ In this phase of CRISP-DM I will evaluate the data we have been given, consideri
 
 ### Data Collection
 
+The FutureLearn MOOC data set has been provided by Newcastle University. It consists of several CSV files containing data on student performance and interaction with the online material for each of the seven runs. Each run consists of 5+ CSVs each containing data on ways students have interacted with the program.
+
+Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists seperately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the couse . However, earlier runs do not have some of the data that was collected later on.All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
+
 ## References
