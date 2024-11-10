@@ -46,21 +46,63 @@ In this phase of CRISP-DM I will evaluate the data we have been given, consideri
 
 The FutureLearn MOOC data set has been provided by Newcastle University. It consists of several CSV files containing data on student performance and interaction with the online material for each of the seven runs. Each run consists of 5+ CSVs each containing data on ways students have interacted with the program.
 
-Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists seperately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the couse . However, earlier runs do not have some of the data that was collected later on.All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
+Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists seperately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the couse . However, earlier runs do not have some of the data that was collected later on. All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
 
 ### Data Exploration
 
 Using R we can see some simple information about each of our CSV files (which have been loaded as data frames using ProjectTemplate) Below is a table containing each types of data recorded for the seven runs, alongside a short description and what runs the data was recorded for.
 
 | Data set | Short Description | Recorded for Runs |
-|-------------------------|-------------------------------|-----------------|
-| archetype.survey.respnses | Survey results which place each student into one of 8 catagories of learning "archetypes" | 1,2,3,4,5,6,7 |
+|------------------------|------------------------------|------------------|
+| archetype.survey.respnses | Survey results which place each student into one of 8 catagories of learning "archetypes" | 3,4,5,6,7 |
 | enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
-| leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 1,2,3,4,5,6,7 |
+| leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 4,5,6,7 |
 | question.response | Saved responses for each student for any quizzes they have completed throughout the course. | 1,2,3,4,5,6,7 |
 | step.activity | The start and completion date and time for each student for each step in the program. | 1,2,3,4,5,6,7 |
-| weekly.sentiment.survey.responses | Responses to a weekly survay containing a quantitative 1-3 rating and qualitative general feedback. | 1,2,3,4,5,6,7 |
+| weekly.sentiment.survey.responses | Responses to a weekly survay containing a quantitative 1-3 rating and qualitative general feedback. | 5,6,7 |
 | team.members | little information can be extracted from this, likely has something to do with team building exercises. | 2,3,4,5,6,7 |
 | video.stats | Data on how students as a whole interacted with videos. Such as how long each video was watched, what devices on, etc. | 3,4,5,6,7 |
+
+```{r, echo=FALSE}
+# Function testing if dataframe is empty
+is_empty_dataframe = function(df) {
+  nrow(df) == 0 || ncol(df) == 0
+}
+
+# Look for all dataframes starting with "cyber"
+df_names = ls(pattern = "^cyber")
+all_data_frames = mget(df_names)
+
+# Apply empty checker to each dataframe
+empty_status = sapply(all_data_frames, is_empty_dataframe)
+empty_frames = empty_status[empty_status == TRUE]
+
+```
+
+From further checking, although some csv files exist they actually don't contain any data. I check has been created to look for this and any empty data frames are not present in the above table's runs, although they technically exist. Furthermore it although many data sets from different runs follow the same name I have checked weather they actually contain the same types of data. This was done my ensuring that all data frame variables shared the same column names. This check is important as later we I likely be merging table rows from different runs to expand on the data I can use to see what are good markers of student performance.
+
+```{r, echo = FALSE}
+# List of patterns for each data frame.
+df_patterns = list("video", "team", "sentiment", "activity", 
+                   "question", "leaving", "enrolments", "archetype")
+
+for (pattern_name in df_patterns) {
+    # Get the dataframes for all runs
+    df_names = ls(pattern = pattern_name)
+    all_data_frames = mget(df_names)
+    
+    # Gather their column names
+    all_columns = lapply(all_data_frames, colnames)
+    # Check if all their names are the same and print results
+    all_same = all(sapply(all_columns, function(cols) identical(cols, all_columns[[1]])))
+    if (all_same) {
+      print(paste("All data frames (",pattern_name,") have the same columns."))
+    } else {
+      print(paste("The data frames (",pattern_name,") do not all have the same columns."))
+    }
+}
+```
+
+From this check we can see that all the 8 collections of data from each runs share the same column names. This gives confidence in the health of the data set and that they can be merged later on. Furthermore, from manual inspection, using R's view() function, it is clear that some of the rows for these data frames contain missing values. This is especially true for survey response data where not all students have taken the time to respond.
 
 ## References
