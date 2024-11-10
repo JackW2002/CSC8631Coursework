@@ -48,4 +48,19 @@ The FutureLearn MOOC data set has been provided by Newcastle University. It cons
 
 Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists seperately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the couse . However, earlier runs do not have some of the data that was collected later on.All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
 
+### Data Exploration
+
+Using R we can see some simple information about each of our CSV files (which have been loaded as data frames using ProjectTemplate) Below is a table containing each types of data recorded for the seven runs, alongside a short description and what runs the data was recorded for.
+
+| Data set | Short Description | Recorded for Runs |
+|-------------------------|-------------------------------|-----------------|
+| archetype.survey.respnses | Survey results which place each student into one of 8 catagories of learning "archetypes" | 1,2,3,4,5,6,7 |
+| enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
+| leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 1,2,3,4,5,6,7 |
+| question.response | Saved responses for each student for any quizzes they have completed throughout the course. | 1,2,3,4,5,6,7 |
+| step.activity | The start and completion date and time for each student for each step in the program. | 1,2,3,4,5,6,7 |
+| weekly.sentiment.survey.responses | Responses to a weekly survay containing a quantitative 1-3 rating and qualitative general feedback. | 1,2,3,4,5,6,7 |
+| team.members | little information can be extracted from this, likely has something to do with team building exercises. | 2,3,4,5,6,7 |
+| video.stats | Data on how students as a whole interacted with videos. Such as how long each video was watched, what devices on, etc. | 3,4,5,6,7 |
+
 ## References
