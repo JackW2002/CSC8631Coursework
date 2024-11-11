@@ -141,4 +141,14 @@ One possible predictor of student performance could be the "learning archetype" 
 
 Onto the next step in this CRISP-DM cycle I began work on data preparation. This step involves transforming the raw data set into something more useful. This involves shaping the data, renaming varaibles, and merging tables to get access to the important data I have identified during data understanding. This is vital as data preperation will allow for the later modelling step of this cycle to be done far more easier.
 
+### Data Transformations
+
+Before ensuring high data quality I first transformed the data so that all runs of the program will have their data frames combined. This was done to ensure that there is a large enough data set to analyse so that I can ensure that outliers in the data set do not "throw off" my results when modelling. For archetype prediction testing only rune 3 - 7 will be combined as there is no data for this in the first 2 runs of the program. This decision was also applied to the question.response data so that we can later match students IDs in this set to their archetype.
+
+```{r}
+# Check for missing values
+colSums(is.na(df))
+
+```
+
 ## References
