@@ -6,3 +6,4 @@ dataframes = list(cyber.security.3_question.response,
                    cyber.security.7_question.response)
 
 merged_question.response = bind_rows(dataframes)
+cache("merged_question.response")

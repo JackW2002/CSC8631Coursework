@@ -145,10 +145,7 @@ Onto the next step in this CRISP-DM cycle I began work on data preparation. This
 
 Before ensuring high data quality I first transformed the data so that all runs of the program will have their data frames combined. This was done to ensure that there is a large enough data set to analyse so that I can ensure that outliers in the data set do not "throw off" my results when modelling. For archetype prediction testing only rune 3 - 7 will be combined as there is no data for this in the first 2 runs of the program. This decision was also applied to the question.response data so that we can later match students IDs in this set to their archetype.
 
-```{r}
-# Check for missing values
-colSums(is.na(df))
-
+```{}
 ```
 
 ## References
