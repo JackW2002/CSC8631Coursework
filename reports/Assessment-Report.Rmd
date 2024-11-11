@@ -53,7 +53,7 @@ Each run has near identical data being recorded such as x_enrollments, where x i
 Using R we can see some simple information about each of our CSV files (which have been loaded as data frames using ProjectTemplate) Below is a table containing each types of data recorded for the seven runs, alongside a short description and what runs the data was recorded for.
 
 | Data set | Short Description | Recorded for Runs |
-|------------------------|------------------------------|------------------|
+|------------------------|------------------------------|-------------------|
 | archetype.survey.respnses | Survey results which place each student into one of 8 catagories of learning "archetypes" | 3,4,5,6,7 |
 | enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
 | leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 4,5,6,7 |
@@ -143,9 +143,25 @@ Onto the next step in this CRISP-DM cycle I began work on data preparation. This
 
 ### Data Transformations
 
-Before ensuring high data quality I first transformed the data so that all runs of the program will have their data frames combined. This was done to ensure that there is a large enough data set to analyse so that I can ensure that outliers in the data set do not "throw off" my results when modelling. For archetype prediction testing only rune 3 - 7 will be combined as there is no data for this in the first 2 runs of the program. This decision was also applied to the question.response data so that we can later match students IDs in this set to their archetype.
+Before ensuring high data quality I first transformed the data so that all runs of the program will have their data frames combined. This was done to ensure that there is a large enough data set to analyse so that I can ensure that outliers in the data set do not "throw off" my results when modelling. For archetype prediction testing only rune 3 - 7 will be combined as there is no data for this in the first 2 runs of the program. This decision was also applied to the question.response data so that we can later match students IDs in this set to their archetype. The scripts to achieve this `01-Combine-questions` and `02-Combine archetypes` can both be found in this projects munge file. These merges result in two data frames being created:
 
-```{}
+-   `merged_question.response`
+
+-   `merged_archetype_survey.response`
+
+```{r, echo=FALSE}
+print("Duplicate archetype survey submitions")
+merged_archetype_survey.response %>%
+     group_by(learner_id) %>%
+     summarize(count = n()) %>%
+     filter(count > 1)
+```
+
+Using R I checked for duplicate archetype survey responses which are present from students filling out the survey multiple times. These duplicated have been removed in the R script `03-Remove-duplicate-archetypes`. I have only kept the most recent survey responses in the case of duplicates, this was decided as it would keep the most recent data on the type of learner that student is.
+
+To associate each student with an their learner archetype we can then merge these two data frames. This column merge, done in `04-Merge-question-archetype`, adds each students respective archetype to the question data frame, using their **learner_id** as the key for the transformation. This was done with an inner join so that only students with documented archetypes were present in the resulting table.The resulting data frame can then be used for modelling to check for any relationships between student performance and their learning archetype.
+
+```         
 ```
 
 ## References
