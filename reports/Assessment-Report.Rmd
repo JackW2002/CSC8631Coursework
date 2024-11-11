@@ -46,7 +46,7 @@ In this phase of CRISP-DM I will evaluate the data we have been given, consideri
 
 The FutureLearn MOOC data set has been provided by Newcastle University. It consists of several CSV files containing data on student performance and interaction with the online material for each of the seven runs. Each run consists of 5+ CSVs each containing data on ways students have interacted with the program.
 
-Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists seperately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the couse . However, earlier runs do not have some of the data that was collected later on. All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
+Each run has near identical data being recorded such as x_enrollments, where x is the run of the program. These data sets exists separately for each 7 runs and contains specific student enrollment data such as their gender and the date they enrolled on the course . However, earlier runs do not have some of the data that was collected later on. All this data has some relevance to my goal of predicting student performance from data collected about their interactions. Therefore, each of these data sets will be considered for exploratory analysis later in this report.
 
 ### Data Exploration
 
@@ -79,7 +79,7 @@ empty_frames = empty_status[empty_status == TRUE]
 
 ```
 
-From further checking, although some csv files exist they actually don't contain any data. I check has been created to look for this and any empty data frames are not present in the above table's runs, although they technically exist. Furthermore it although many data sets from different runs follow the same name I have checked weather they actually contain the same types of data. This was done my ensuring that all data frame variables shared the same column names. This check is important as later we I likely be merging table rows from different runs to expand on the data I can use to see what are good markers of student performance.
+From further examination, although some csv files exist they actually don't contain any data. A check has been created to look for this and any empty data frames are not present in the above table's runs, although they technically exist. Furthermore although many data sets from different runs follow the same name conventions I have checked weather they actually contain the same types of data. This was done by ensuring that all data frame variables shared the same column names. This check is important as later I will likely be merging table rows from different runs to expand on the data I can use to see what are good markers of student performance.
 
 ```{r, echo = FALSE}
 # List of patterns for each data frame.
@@ -104,5 +104,37 @@ for (pattern_name in df_patterns) {
 ```
 
 From this check we can see that all the 8 collections of data from each runs share the same column names. This gives confidence in the health of the data set and that they can be merged later on. Furthermore, from manual inspection, using R's view() function, it is clear that some of the rows for these data frames contain missing values. This is especially true for survey response data where not all students have taken the time to respond.
+
+Unfortunately, the provided data set does not appear to contain any grades for each of the students. Therefore to actually gauge student performance another measure must be used. For this quiz data will be used from the x_question.response data frames. This data frame contains the following attributes:
+
+-   **learner_id:** id of the student partaking in the quiz.
+
+-   **quiz_question:** id of the question being answered.
+
+-   **question_type:** categorical data on the type of question being asked.
+
+-   **week number:** the week of the program the quiz is from.
+
+-   **step_number:** the step of the program the quiz is from.
+
+-   **question_number:** the location of the question in the quiz.
+
+-   **reponse:** the student's response to the question.
+
+-   **cloze_response:** N/A columns, no data.
+
+-   **submitted_at:** data the answer was submitted.
+
+-   **correct:** bool value of weather the response was correct.
+
+One possible predictor of student performance could be the "learning archetype" that student falls under. It would be a safe bet to guess that certain archetypes of students would perform differently on the program compared to others. For example, "Advancers" who are highly self-motivated and ambitious may perform better more hands off online learning than other archetypes; therefore needing less support to perform well on the course. The data recording each students archetype is as follows:
+
+-   **id:** id of the survey response.
+
+-   **learner_id:** id of the student partaking in the quiz.
+
+-   **responded_at:** date the student responded to the survey.
+
+-   **archetype:** categorical data of the archetype that student falls under.
 
 ## References
