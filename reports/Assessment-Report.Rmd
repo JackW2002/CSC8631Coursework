@@ -19,8 +19,6 @@ library(ProjectTemplate)
 load.project()
 ```
 
-idea: - check how each archetype interacts with videos, questions, steps etc. - Are question results a good indicator of the sutudents overall performance? - compare video watch time to question response accuracy \*\*\* - which archetypes werte best at quizzes?
-
 # Introduction
 
 Newcastle University have completed seven runs of Cyber Security: Safety At Home, Online, and in Life, A MOOC (massive open online course) teaching cyber security concepts to the public. This report aims to explore the data collected from these runs to be able to provide important analytics and valuable insights into online learning environments and further optimise online teaching. To achieve this, two cycles of CRISP-DM will be completed hopefully providing valuable insight into the provided data set.
@@ -57,12 +55,12 @@ Using R we can see some simple information about each of our CSV files (which ha
 
 | Data set | Short Description | Recorded for Runs |
 |------------------------|-----------------------------|-------------------|
-| archetype.survey.respnses | Survey results which place each student into one of 8 categories of learning "archetypes". | 3,4,5,6,7 |
-| enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
+| archetype.survey.responses | Survey results which place each student into one of 8 categories of learning "archetypes". | 3,4,5,6,7 |
+| enrollments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
 | leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 4,5,6,7 |
 | question.response | Saved responses for each student for any quizzes they have completed throughout the course. | 1,2,3,4,5,6,7 |
 | step.activity | The start and completion date and time for each student for each step in the program. | 1,2,3,4,5,6,7 |
-| weekly.sentiment.survey.responses | Responses to a weekly survay containing a quantitative 1-3 rating and qualitative general feedback. | 5,6,7 |
+| weekly.sentiment.survey.responses | Responses to a weekly survey containing a quantitative 1-3 rating and qualitative general feedback. | 5,6,7 |
 | team.members | little information can be extracted from this, likely has something to do with team building exercises. | 2,3,4,5,6,7 |
 | video.stats | Data on how students as a whole interacted with videos. Such as how long each video was watched, what devices on, etc. | 3,4,5,6,7 |
 
@@ -122,7 +120,7 @@ Unfortunately, the provided data set does not appear to contain any grades for e
 
 -   **question_number:** the location of the question in the quiz.
 
--   **reponse:** the student's response to the question.
+-   **response:** the student's response to the question.
 
 -   **cloze_response:** N/A columns, no data.
 
@@ -142,7 +140,7 @@ One possible predictor of student performance could be the "learning archetype" 
 
 ## Data Preparation
 
-Onto the next step in this CRISP-DM cycle I began work on data preparation. This step involves transforming the raw data set into something more useful. This involves shaping the data, renaming varaibles, and merging tables to get access to the important data I have identified during data understanding. This is vital as data preparation will allow for the later modelling step of this cycle to be done far more easier.
+Onto the next step in this CRISP-DM cycle I began work on data preparation. This step involves transforming the raw data set into something more useful. This involves shaping the data, renaming variables, and merging tables to get access to the important data I have identified during data understanding. This is vital as data preparation will allow for the later modelling step of this cycle to be done far more easier.
 
 ### Data Transformations
 
@@ -164,7 +162,7 @@ merged_archetype_survey.response |>
 
 To associate each student with an their learner archetype we can then merge these two data frames. This column merge, done in `04-Merge-question-archetype`, adds each students respective archetype to the question data frame, using their **learner_id** as the key for the transformation. This was done with an inner join so that only students with documented archetypes were present in the resulting table.The resulting data frame can then be used for modelling to check for any relationships between student performance and their learning archetype.
 
-After creating the `question_archetype_df` data frame some datatype conversion was needed for later pre-processing steps to work. Students had weather they answered each question correctly or not saved along the 'correct' column of the `question.responses` data frames. This was originally recorded as a character type, being either "true" or "false", and needed to be converted to boolean value for a grading value to be derived from. This was completed in the `05-Correct-boolean-conversion` R script.
+After creating the `question_archetype_df` data frame some datatype conversion was needed for later pre-processing steps to work. Students had weather they answered each question correctly or not saved along the 'correct' column of the `question.responses` data frames. This was originally recorded as a character type, being either "true" or "false", and needed to be converted to Boolean values for a grading value to be derived from. This was completed in the `05-Correct-boolean-conversion` R script.
 
 Next, to obtain some sort of grade for each student from the combined `question_archetype_df` I have created a new data frame `student_grades` in `06-Student-grades`. This data frame, which is derived from q`uestion_archetype_df`, contains each student and their archetype alongside a new correct_percent column which is the % of questions that student answered correctly across the course.
 
@@ -303,5 +301,13 @@ ggplot(heatmap_data, aes(x = step_number, y = archetype, fill = percent_correct)
 ```
 
 From the heat map shows in figure 3 we can how each archetype has performed over each step in the program. Firstly we can see a large difference in performance for all students between steps 8 & 20 vs steps 11 & 18. Perhaps indicating that the quizzes in the middle of the program are easier. We can also see that there appears to be some noticeable differences in performance between archetypes for specific steps. For example advancers are largely outperforming other archetypes during step 20. This relationship does not appear to be as simple as advancers always outperforming other archetypes as in earlier analysis this difference is not as apparent. Furthermore, we can now see that for each step a different archetype is outperforming others. Step 11 has fixers outperforming others and vitalisers are performing best during step 8, this was not apparent in earlier analysis.
+
+## Evaluation
+
+Now that analysis on my first CRISP-DM cycle has concluded I can move one to the evaluation. After business understanding and data understanding I believe the modelling step of this cycle has lead to some interesting insights into the data set. Firstly the data seems to be relatively healthy, the provided CSVs across each run are all fully compatible and there doesn't appear to be a large amount of missing data. The main issue found during this cycle was multiple responses to the archetype survey, however this was quickly remedied by only keeping each student's most recent submission.
+
+Some interesting data on the amount of each archetype present in the data set has also been found. With specifically vitalisers being a very common archetype for students partaking in this online course. Focusing more on the initial research question the distribution graph from figure two appears to show little difference between archetype performance for the program overall. However, after producing a heat map of archetype performance across each step we can see that performance is not as similar as previously thought. It seems that archetype performance does change significantly depending on the step of the program student's are being quizzed on.
+
+This leads to the conclusion that archetype performance could be a decent indicator of student performance when taking into account the step the student is in and not just looking at overall performance. Therefore, I believe that this first cycle of CRISP-DM has provided reasonable evidence that student archetype could be a good indicator of student performance. However, the differences in performance are too small for intervention of one specific archetype to be useful as they tend to differ by only around 10%. It may be the case that multiple predictors for each student would need to be used to predict how they will perform on the course.
 
 ## References
