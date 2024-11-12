@@ -99,9 +99,9 @@ for (pattern_name in df_patterns) {
     # Check if all their names are the same and print results
     all_same = all(sapply(all_columns, function(cols) identical(cols, all_columns[[1]])))
     if (all_same) {
-      print(paste("All data frames (",pattern_name,") have the same columns."))
+        print(paste("All data frames (",pattern_name,") have the same columns."))
     } else {
-      print(paste("The data frames (",pattern_name,") do not all have the same columns."))
+        print(paste("The data frames (",pattern_name,") do not all have the same columns."))
     }
 }
 ```
@@ -157,9 +157,9 @@ Using R I checked for duplicate archetype survey responses which are present fro
 ```{r, echo=FALSE, message=FALSE, results='hide'}
 print("Duplicate archetype survey submitions")
 merged_archetype_survey.response |>
-     group_by(learner_id) |>
-     summarize(count = n()) |>
-     filter(count > 1)
+    group_by(learner_id) |>
+    summarize(count = n()) |>
+    filter(count > 1)
 ```
 
 To associate each student with an their learner archetype we can then merge these two data frames. This column merge, done in `04-Merge-question-archetype`, adds each students respective archetype to the question data frame, using their **learner_id** as the key for the transformation. This was done with an inner join so that only students with documented archetypes were present in the resulting table.The resulting data frame can then be used for modelling to check for any relationships between student performance and their learning archetype.
@@ -206,7 +206,7 @@ ggplot(archetype_counts, aes(x = reorder(archetype, -n), y = n, fill = archetype
     labs(title = "Count of Students by Archetype",
         x = "Archetype",
         y = "Number of Students") + 
-    scale_fill_manual(values = archetype_colours) + # Add custome colours
+    scale_fill_manual(values = archetype_colours) + # Add custom colours
     theme_minimal() + 
     theme (
         plot.title = element_text(hjust = 0.5), # Center Title
@@ -219,5 +219,45 @@ ggsave("graphs/archetype_counr.png", width = 8, height = 6, units = "in") # Save
 ```
 
 From the column chart produced above in Fig 1 we can see the distribution of how many of each student archetype is in the data set. Notably it is clear that there is not an even distribution of these archetypes in my data. Instead groups such as vitalizes are highly represented by 23.6% of my data, whilst archetypes like flourishers and preparers are seen far less. This will have to be considered when making predictions about these groups, as their will be less data to support any claims. Furthermore around 10.3% of students did not belong to any of the pre-defined archetypes. If this scales similarly to the wider population of students they will not be able to have their performance predicted with this measure.
+
+### Archetype Score Distributions
+
+To see if leaner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.
+
+```{r ridgesplpt, echo=FALSE, message=FALSE, fig.cap="Density Plot of Archetype Scores and their Means", fig.pos="H", fig.width=8 ,fig.height=5}
+filtered_student_grades = student_grades |>
+    filter(archetype != "Other")
+
+# Get the means of each archetype
+archetype_means = student_grades |>
+    group_by(archetype) |>
+    summarize(mean_percent = mean(percent_correct))
+
+
+ggplot(filtered_student_grades, aes(x = percent_correct, y = factor(archetype), 
+                           fill = factor(archetype))) +
+    geom_density_ridges(scale = 1.5, alpha = 0.7, color = "lightgray") +
+    labs(
+        title = "Density of Student Scores by Year",
+        x = "Percent of Answers Correct",
+        y = "Archetype"
+        ) +
+    theme_minimal() +
+    scale_fill_manual(values = archetype_colours) + # Add custom colours
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none"
+        ) + 
+    coord_cartesian(xlim = c(4, 95.8)) +
+      geom_text(
+          data = archetype_means, aes(x = mean_percent, y = archetype, 
+                                            label = paste0("Mean: ", 
+                                            round(mean_percent, 1), "%")),
+          hjust = +0.7, vjust = -3, color = "black", size = 3)
+
+ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in") # Save plot
+
+
+```
 
 ## References
