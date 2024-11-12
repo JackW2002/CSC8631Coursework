@@ -151,11 +151,11 @@ Before ensuring high data quality I first transformed the data so that all runs 
 
 Using R I checked for duplicate archetype survey responses which are present from students filling out the survey multiple times. These duplicated have been removed in the R script `03-Remove-duplicate-archetypes`. I have only kept the most recent survey responses in the case of duplicates, this was decided as it would keep the most recent data on the type of learner that student is.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, results='hide'}
 print("Duplicate archetype survey submitions")
-merged_archetype_survey.response %>%
-     group_by(learner_id) %>%
-     summarize(count = n()) %>%
+merged_archetype_survey.response |>
+     group_by(learner_id) |>
+     summarize(count = n()) |>
      filter(count > 1)
 ```
 
@@ -177,7 +177,7 @@ Since the archetypes variable in `student_grades` is categorical it would follow
 # Group data by archetypes and count instances of each group
 archetype_counts = student_grades |>
     group_by(archetype) |>
-    summarise(n = n())
+    summarise(n = n(), .groups = "drop")
 
 # Custom colours for the each archetype
 archetype_colours = c(
