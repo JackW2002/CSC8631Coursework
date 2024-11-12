@@ -265,4 +265,43 @@ From Fig 2 we can see how each of the eight archetypes are performing on the pro
 
 From the distribution graph we can get some key takeaways. First, most groups average around a 60% success rate in answering questions, with there being little delineation away from this between groups. We can also see that some groups are less spread than others, for example advances tend to group around the distribution mean when compared to explorers. We can also see the amount of people from each group perfectly answering all their quizzes and therefore having a 100% success rate. Although, this looks great it likely signifies some level of cheating from these students, which does differ slightly between archetype groups.
 
+### Archetype Step Heat Map
+
+As we can see no large differences between student performance and their archetypes so far It may be worth investigating deeper into our questions to see if there are any differences being missed due to just grouping all each student's quiz answers together. It could be that different archetypes are performing differently depending on the stage of the course, one archetype could be better at content relating to online payments than others. Therefore analyzing how each group performs on questions for each stage of the program could reveal some insights. To allow for heat map to be made the `question_archetype_df` data frame has been grouped by archetypes and step_number. A percent_correct column has then been made storing how each of the archetypes has performed for each step. Throughout the seven runs the program material (which can be seen in docs) has not changed so therefore all data could be combined for this.
+
+```{r heatmap, echo=FALSE, fig.cap = "Archetype Performance Across Program Steps Heat Map", fig.width = 5.5, fig.height = 3.25, fig.align='center'}
+# Group quiz responses by archetype and step number. Then calculate the mean % of correct responses there are for each step
+heatmap_data = question_archetype_df |>
+    filter(archetype != "Other") |>
+    group_by(archetype, step_number) |>
+    summarize(percent_correct = mean(correct == TRUE, na.rm = TRUE), .groups = "drop")
+
+# Convert step_number to factor so gaps arent present in heat map
+heatmap_data$step_number <- as.factor(heatmap_data$step_number)
+
+# Plot heatmap
+ggplot(heatmap_data, aes(x = step_number, y = archetype, fill = percent_correct)) +
+    geom_tile() +
+    scale_fill_distiller(
+                    palette = "RdPu", 
+                    direction = 1, labels = label_percent(accuracy = 1)
+                    ) +
+    geom_text(aes(
+                label = paste0(round(percent_correct * 100, 1), "%")), # Add % onto text 
+                color = "black", size = 2.5
+                ) +
+    labs(
+        title = "Student Archetype Performance Across Program Steps",
+        x = "Program Step",
+        y = "Archetype",
+        fill = "Percent Correct"
+        ) +
+    theme_minimal() + 
+    theme(
+        plot.title = element_text(hjust = 0.5)
+    )
+```
+
+From the heat map shows in figure 3 we can how each archetype has performed over each step in the program. Firstly we can see a large difference in performance for all students between steps 8 & 20 vs steps 11 & 18. Perhaps indicating that the quizzes in the middle of the program are easier. We can also see that there appears to be some noticeable differences in performance between archetypes for specific steps. For example advancers are largely outperforming other archetypes during step 20. This relationship does not appear to be as simple as advancers always outperforming other archetypes as in earlier analysis this difference is not as apparent. Furthermore, we can now see that for each step a different archetype is outperforming others. Step 11 has fixers outperforming others and vitalisers are performing best during step 8, this was not apparent in earlier analysis.
+
 ## References
