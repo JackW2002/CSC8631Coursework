@@ -246,12 +246,13 @@ ggplot(filtered_student_grades, aes(x = percent_correct, y = factor(archetype),
         plot.title = element_text(hjust = 0.5),
         legend.position = "none"
         ) + 
-    coord_cartesian(xlim = c(4, 95.8)) +
-      geom_text(
-          data = archetype_means, aes(x = mean_percent, y = archetype, 
+    coord_cartesian(xlim = c(4, 96.5)) +
+    scale_x_continuous(labels = label_percent(scale = 1)) +
+    geom_text(
+        data = archetype_means, aes(x = mean_percent, y = archetype, 
                                             label = paste0("Mean: ", 
                                             round(mean_percent, 1), "%")),
-          hjust = +0.7, vjust = -4, color = "black", size = 3)
+        hjust = +0.7, vjust = -4, color = "black", size = 3)
 
 ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in") # Save plot
 
