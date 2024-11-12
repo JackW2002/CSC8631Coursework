@@ -54,7 +54,7 @@ Using R we can see some simple information about each of our CSV files (which ha
 
 | Data set | Short Description | Recorded for Runs |
 |------------------------|------------------------------|-------------------|
-| archetype.survey.respnses | Survey results which place each student into one of 8 catagories of learning "archetypes" | 3,4,5,6,7 |
+| archetype.survey.respnses | Survey results which place each student into one of 8 categories of learning "archetypes". | 3,4,5,6,7 |
 | enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
 | leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 4,5,6,7 |
 | question.response | Saved responses for each student for any quizzes they have completed throughout the course. | 1,2,3,4,5,6,7 |
@@ -125,7 +125,7 @@ Unfortunately, the provided data set does not appear to contain any grades for e
 
 -   **submitted_at:** data the answer was submitted.
 
--   **correct:** bool value of weather the response was correct.
+-   **correct:** weather the response was correct.
 
 One possible predictor of student performance could be the "learning archetype" that student falls under. It would be a safe bet to guess that certain archetypes of students would perform differently on the program compared to others. For example, "Advancers" who are highly self-motivated and ambitious may perform better more hands off online learning than other archetypes; therefore needing less support to perform well on the course. The data recording each students archetype is as follows:
 
@@ -139,7 +139,7 @@ One possible predictor of student performance could be the "learning archetype" 
 
 ## Data Preparation
 
-Onto the next step in this CRISP-DM cycle I began work on data preparation. This step involves transforming the raw data set into something more useful. This involves shaping the data, renaming varaibles, and merging tables to get access to the important data I have identified during data understanding. This is vital as data preperation will allow for the later modelling step of this cycle to be done far more easier.
+Onto the next step in this CRISP-DM cycle I began work on data preparation. This step involves transforming the raw data set into something more useful. This involves shaping the data, renaming varaibles, and merging tables to get access to the important data I have identified during data understanding. This is vital as data preparation will allow for the later modelling step of this cycle to be done far more easier.
 
 ### Data Transformations
 
@@ -149,6 +149,8 @@ Before ensuring high data quality I first transformed the data so that all runs 
 
 -   `merged_archetype_survey.response`
 
+Using R I checked for duplicate archetype survey responses which are present from students filling out the survey multiple times. These duplicated have been removed in the R script `03-Remove-duplicate-archetypes`. I have only kept the most recent survey responses in the case of duplicates, this was decided as it would keep the most recent data on the type of learner that student is.
+
 ```{r, echo=FALSE}
 print("Duplicate archetype survey submitions")
 merged_archetype_survey.response %>%
@@ -157,9 +159,11 @@ merged_archetype_survey.response %>%
      filter(count > 1)
 ```
 
-Using R I checked for duplicate archetype survey responses which are present from students filling out the survey multiple times. These duplicated have been removed in the R script `03-Remove-duplicate-archetypes`. I have only kept the most recent survey responses in the case of duplicates, this was decided as it would keep the most recent data on the type of learner that student is.
-
 To associate each student with an their learner archetype we can then merge these two data frames. This column merge, done in `04-Merge-question-archetype`, adds each students respective archetype to the question data frame, using their **learner_id** as the key for the transformation. This was done with an inner join so that only students with documented archetypes were present in the resulting table.The resulting data frame can then be used for modelling to check for any relationships between student performance and their learning archetype.
+
+After creating the `question_archetype_df` data frame some datatype conversion was needed for later pre-processing steps to work. Students had weather they answered each question correctly or not saved along the 'correct' column of the `question.responses` data frames. This was originally recorded as a character type, being either "true" or "false", and needed to be converted to boolean value for a grading value to be derived from. This was completed in the `05-Correct-boolean-conversion` R script.
+
+Next, to obtain some sort of grade for each student from the combined `question_archetype_df` I have created a new data frame `student_grades` in `06-Student-grades`. This data frame, which is derived from q`uestion_archetype_df`, contains each student and their archetype alongside a new correct_percent column which is the % of questions that student answered correctly across the course.
 
 ```         
 ```
