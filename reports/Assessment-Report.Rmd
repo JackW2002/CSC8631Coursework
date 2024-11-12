@@ -169,4 +169,46 @@ Next, to obtain some sort of grade for each student from the combined `question_
 
 Now that the data has been suitably prepared it can be modeled. This step of the CRISP-DM process involves interacting with the prepared data set to extract information that we can use to answer the research question outlined in business understanding. During this cycle this will involve summarizing and plotting interesting relationships present in the `student_grades` data frame, this will be done using both dplyr and ggplot2 libraries.
 
+### Exploring the Data
+
+Since the archetypes variable in `student_grades` is categorical it would follow that counting the amount of instances of each archetype is present for further analysis. Having a larger amount of each student archetype in my data set would allow for stronger claims to be made from my modelling, as the chance of outliers significantly effecting analysis would diminish greatly as the number of observations in the sample data increases. To count how many of each archetype group is present, dplyr's `group_by()` and `n()` functions can be utalized. This data can then be plotted as a column chart for easy comparison amongst each archetype.
+
+```{r countArchetypes, echo=FALSE, fig.cap="Columns Count Chart for Student Archetypes", fig.pos="H", fig.width=8, fig.height=4}
+# Group data by archetypes and count instances of each group
+archetype_counts = student_grades |>
+    group_by(archetype) |>
+    summarise(n = n())
+
+# Custom colours for the each archetype
+archetype_colours = c(
+    "Advancers" = "#D81B60",
+    "Explorers" = "#1E88E5",
+    "Fixers" = "#FFC107",
+    "Flourishers" = "#004D40",
+    "Hobbyists" = "#75C9FC",
+    "Other" = "#B3B3B3",
+    "Preparers" = "#7C7F29",
+    "Vitalisers" = "#913580"
+)
+
+# Create column ggplot
+ggplot(archetype_counts, aes(x = reorder(archetype, -n), y = n, fill = archetype)) + # Order and colour depending on archetype
+    geom_col(color = "black") + # Add black outline to columns
+    labs(title = "Count of Students by Archetype",
+        x = "Archetype",
+        y = "Number of Students") + 
+    scale_fill_manual(values = archetype_colours) + # Add custome colours
+    theme_minimal() + 
+    theme (
+        plot.title = element_text(hjust = 0.5), # Center Title
+        legend.position = "none", # Remove legend
+        panel.grid.major.x = element_blank() # Remove Vertical grid lines
+    )
+
+ggsave("graphs/archetype_counr.png", width = 8, height = 6, units = "in") # Save plot
+
+```
+
+test to see if the bar chart gets put to the top of the page
+
 ## References
