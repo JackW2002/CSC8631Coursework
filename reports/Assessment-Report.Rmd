@@ -14,7 +14,7 @@ knitr::opts_knit$set(root.dir = normalizePath('..'))
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 ```
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r project_load, warning=FALSE, message=FALSE, echo=FALSE}
 library(ProjectTemplate)
 load.project()
 ```
@@ -66,7 +66,7 @@ Using R we can see some simple information about each of our CSV files (which ha
 | team.members | little information can be extracted from this, likely has something to do with team building exercises. | 2,3,4,5,6,7 |
 | video.stats | Data on how students as a whole interacted with videos. Such as how long each video was watched, what devices on, etc. | 3,4,5,6,7 |
 
-```{r, echo=FALSE}
+```{r empty_check, echo=FALSE}
 # Function testing if dataframe is empty
 is_empty_dataframe = function(df) {
   nrow(df) == 0 || ncol(df) == 0
@@ -84,7 +84,7 @@ empty_frames = empty_status[empty_status == TRUE]
 
 From further examination, although some csv files exist they actually don't contain any data. A check has been created to look for this and any empty data frames are not present in the above table's runs, although they technically exist. Furthermore although many data sets from different runs follow the same name conventions I have checked weather they actually contain the same types of data. This was done by ensuring that all data frame variables shared the same column names. This check is important as later I will likely be merging table rows from different runs to expand on the data I can use to see what are good markers of student performance.
 
-```{r, echo = FALSE}
+```{r compatability_test, echo = FALSE}
 # List of patterns for each data frame.
 df_patterns = list("video", "team", "sentiment", "activity", 
                    "question", "leaving", "enrolments", "archetype")
@@ -154,7 +154,7 @@ Before ensuring high data quality I first transformed the data so that all runs 
 
 Using R I checked for duplicate archetype survey responses which are present from students filling out the survey multiple times. These duplicated have been removed in the R script `03-Remove-duplicate-archetypes`. I have only kept the most recent survey responses in the case of duplicates, this was decided as it would keep the most recent data on the type of learner that student is.
 
-```{r, echo=FALSE, message=FALSE, results='hide'}
+```{r duplicate_test, echo=FALSE, message=FALSE, results='hide'}
 print("Duplicate archetype survey submitions")
 merged_archetype_survey.response |>
     group_by(learner_id) |>
@@ -176,7 +176,7 @@ Now that the data has been suitably prepared it can be modeled. This step of the
 
 Since the archetypes variable in `student_grades` is categorical it would follow that counting the amount of instances of each archetype is present for further analysis. Having a larger amount of each student archetype in my data set would allow for stronger claims to be made from my modelling, as the chance of outliers significantly effecting analysis would diminish greatly as the number of observations in the sample data increases. To count how many of each archetype group is present, dplyr's `group_by()` and `n()` functions can be utilized. This data can then be plotted as a column chart for easy comparison amongst each archetype.
 
-```{r countArchetypes, echo=FALSE,fig.cap="Columns Count Chart for Student Archetypes", fig.width=8, fig.height=4}
+```{r countArchetypes, echo=FALSE,fig.cap="Columns Count Chart for Student Archetypes", fig.width=8, fig.height=3}
 # Group data by archetypes and count instances of each group
 archetype_counts = student_grades |>
     group_by(archetype) |>
@@ -202,7 +202,7 @@ archetype_colours = c(
 ggplot(archetype_counts, aes(x = reorder(archetype, -n), y = n, fill = archetype)) + # Order and colour depending on archetype
     geom_col(color = "black") + # Add black outline to columns
     geom_text(aes(label = paste0(round(percent_of_overall, 1), "%")),  # Add % label
-              vjust = -0.3) +
+              vjust = 1.5, color = "white") +
     labs(title = "Count of Students by Archetype",
         x = "Archetype",
         y = "Number of Students") + 
@@ -222,14 +222,12 @@ From the column chart produced above in Fig 1 we can see the distribution of how
 
 ### Archetype Score Distributions
 
-To see if leaner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.
-
 ```{r ridgesplpt, echo=FALSE, message=FALSE, fig.cap="Density Plot of Archetype Scores and their Means", fig.pos="H", fig.width=8 ,fig.height=5}
 filtered_student_grades = student_grades |>
     filter(archetype != "Other")
 
 # Get the means of each archetype
-archetype_means = student_grades |>
+archetype_means = filtered_student_grades |>
     group_by(archetype) |>
     summarize(mean_percent = mean(percent_correct))
 
@@ -253,11 +251,11 @@ ggplot(filtered_student_grades, aes(x = percent_correct, y = factor(archetype),
           data = archetype_means, aes(x = mean_percent, y = archetype, 
                                             label = paste0("Mean: ", 
                                             round(mean_percent, 1), "%")),
-          hjust = +0.7, vjust = -3, color = "black", size = 3)
+          hjust = +0.7, vjust = -4, color = "black", size = 3)
 
 ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in") # Save plot
 
 
 ```
 
-## References
+To see if leaner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.References
