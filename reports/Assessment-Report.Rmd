@@ -40,7 +40,7 @@ For this EDA to succeed a strong predictor of learning outcomes should be identi
 
 ## Data Understanding
 
-In this phase of CRISP-DM I will evaluate the data we have been given, considering its usefulness in completing the task set about from the Business Understanding step. The data will have its reliability considered from what we know about how it was collected. A close analysis will also be conducted to check what data is avialable, considering how it could be used to perform a successful CRISP-DM cycle.
+In this phase of CRISP-DM I will evaluate the data we have been given, considering its usefulness in completing the task set about from the Business Understanding step. The data will have its reliability considered from what we know about how it was collected. A close analysis will also be conducted to check what data is available, considering how it could be used to perform a successful CRISP-DM cycle.
 
 ### Data Collection
 
@@ -53,7 +53,7 @@ Each run has near identical data being recorded such as x_enrollments, where x i
 Using R we can see some simple information about each of our CSV files (which have been loaded as data frames using ProjectTemplate) Below is a table containing each types of data recorded for the seven runs, alongside a short description and what runs the data was recorded for.
 
 | Data set | Short Description | Recorded for Runs |
-|------------------------|------------------------------|-------------------|
+|------------------------|-----------------------------|-------------------|
 | archetype.survey.respnses | Survey results which place each student into one of 8 categories of learning "archetypes". | 3,4,5,6,7 |
 | enrolments | Enrollment data for each student on the course. | 1,2,3,4,5,6,7 |
 | leaving.survey.responses | Survey responses kept from a questionnaire given to students who decided to leave the course. | 4,5,6,7 |
@@ -165,7 +165,8 @@ After creating the `question_archetype_df` data frame some datatype conversion w
 
 Next, to obtain some sort of grade for each student from the combined `question_archetype_df` I have created a new data frame `student_grades` in `06-Student-grades`. This data frame, which is derived from q`uestion_archetype_df`, contains each student and their archetype alongside a new correct_percent column which is the % of questions that student answered correctly across the course.
 
-```         
-```
+## Modeling
+
+Now that the data has been suitably prepared it can be modeled. This step of the CRISP-DM process involves interacting with the prepared data set to extract information that we can use to answer the research question outlined in business understanding. During this cycle this will involve summarizing and plotting interesting relationships present in the `student_grades` data frame, this will be done using both dplyr and ggplot2 libraries.
 
 ## References
