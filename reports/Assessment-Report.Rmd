@@ -246,12 +246,12 @@ ggplot(filtered_student_grades, aes(x = percent_correct, y = factor(archetype),
         plot.title = element_text(hjust = 0.5),
         legend.position = "none"
         ) + 
-    coord_cartesian(xlim = c(4, 96.5)) +
-    scale_x_continuous(labels = label_percent(scale = 1)) +
+    coord_cartesian(xlim = c(4, 96.5)) +  # Limit x axist to show 100%
+    scale_x_continuous(labels = label_percent(scale = 1)) +  # Add % to x axis
     geom_text(
         data = archetype_means, aes(x = mean_percent, y = archetype, 
                                             label = paste0("Mean: ", 
-                                            round(mean_percent, 1), "%")),
+                                            round(mean_percent, 1), "%")), # Add means to plot
         hjust = +0.7, vjust = -4, color = "black", size = 3)
 
 ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in") # Save plot
@@ -259,4 +259,10 @@ ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in"
 
 ```
 
-To see if leaner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.References
+To see if learner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.References
+
+From Fig 2 we can see how each of the eight archetypes are performing on the program quizzes. I have also added the mean correct answer percents to each archetype to allow for further comparison between groups. From the plot we can see that there are some noticeable differences in performance across difference archetypes. For example vitalisers and advancers seem to be performing the best on these quizzes, having the highest means and more right-sided distributions. However, when examining the flourishers archetype (which is the lowest scores) care needs to be used as this archetype has the smallest sample set. This is apparent when looking at the bumps in their distribution, which are more pronounced than others, signifying that outliers are having a dramatic effect on the group.
+
+From the distribution graph we can get some key takeaways. First, most groups average around a 60% success rate in answering questions, with there being little delineation away from this between groups. We can also see that some groups are less spread than others, for example advances tend to group around the distribution mean when compared to explorers. We can also see the amount of people from each group perfectly answering all their quizzes and therefore having a 100% success rate. Although, this looks great it likely signifies some level of cheating from these students, which does differ slightly between archetype groups.
+
+## References
