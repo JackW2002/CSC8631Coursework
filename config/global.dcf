@@ -8,7 +8,7 @@ munging: TRUE
 logging: FALSE
 logging_level: INFO
 load_libraries: TRUE
-libraries: dplyr, ggplot2, ggridges, scales
+libraries: dplyr, ggplot2, ggridges, scales, knitr
 as_factors: FALSE
 tables_type: tibble
 attach_internal_libraries: FALSE
