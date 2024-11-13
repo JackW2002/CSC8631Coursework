@@ -336,7 +336,7 @@ I will now begin the modelling stage of my second CRISP-DM cycle. The modelling 
 
 ### Initial Exploration
 
-```{r certificate_purchase_count, echo=FALSE, tab.cap="Certificate purchase count"}
+```{r certificate_purchase_count, echo=FALSE, tab.cap="Certificate Purchase Count"}
 # Summerise number of purchases
 summary_table = student_certificate_data |>
     group_by(certificate_purchased) |>
@@ -351,5 +351,85 @@ summary_table |>
 ```
 
 As we can see from the above table students as a whole are quite unlikely to purchase a certificate from the program, with less than 95.7% of students not making a purchase. Whilst this will partly be due to students dropping out of the course below completion this is still quite a low figure. Furthermore, this will make finding correlations for purchasing certificates harder as there will be a smaller sample set to make determinations about.
+
+```{r summary_table_only_completed, echo=FALSE, tab.cap="Purchase Count for Studets Who Fully Participated"}
+summary_table_completed = student_certificate_data |>
+    filter(fully_participated_at != "") |> # Filter for students who completed the course
+    group_by(certificate_purchased) |>
+    summarise(
+        count = n(),
+        percent = (n() / nrow(student_certificate_data |>
+                                  filter(fully_participated_at != ""))) * 100)
+
+# Display as table
+summary_table_completed |>
+    kable(digits = 1, col.names = c("Certificate Purchased", "Count", "Percent of total"),
+          align = "c")
+```
+
+As we can see amongst students who fully participated (completed) the course purchase rate was much higher. With 37.3% of these students purchasing a certificate it seems that a large factor for weather a student purchases a certificate or not is weather they actually completed the course. This implies that if shareholders would like purchases to increase a push on getting students to fully complete the course could be important.
+
+### Score Purchase Violin Graph
+
+One variable impacting purchase chance could be the students performance in quizzes. Learners who are performing well in quizzes will likely be understanding the material better, be more invested and therefore upon completion of the course more likely to purchase a certificate. To see if this holds a violin plot can be created using ggplot2 showing percent_correct scores for both purchased and not purchased students.
+
+```{r purchase_rate_violion_plot, echo=FALSE, fig.align='center', fig.cap="Violin Score Distribution by Purchases"}
+# Calculate purchased means
+means = student_certificate_data |>
+    group_by(certificate_purchased) |>
+    summarise(mean_percent = mean(percent_correct))
+
+ggplot(student_certificate_data , 
+       aes(x = certificate_purchased, y = percent_correct, 
+           fill = certificate_purchased)
+       ) +
+    geom_violin(trim = TRUE, alpha = 0.7) +
+    geom_text(data = means, aes(x = certificate_purchased, y = mean_percent, 
+                                label = paste0(round(mean_percent, 1), "%")),
+              color = "black", size = 4) +
+    labs(
+        title = "Score Distribution of Students by Certificate Purchase",
+        x = "Certificate Purchased",
+        y = "Percent of Questions Correct"
+        ) +
+    scale_y_continuous(labels = label_percent(scale = 1)) +  # Add % to x axis
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        )
+
+```
+
+Interestingly we can see that students who did not purchase a certificate at the end of their course actually performed on average better than students who purchased the certificate. It is also apparent that the cohort of students who did not purchase certificates were more likely to perfectly answer all of their questions, and therefore be probable cheaters. This graph seems to detract from the idea that student performance has a direct correlation to purchase chance.
+
+### Archetype Certificate Purchase Chart
+
+```{r certificate_perchase_chart, echo=FALSE, fig.cap="Stacked Column chart of Ceritificate Purchase by Archetypes", fig.align='center', fig.height=3.5, fig.width=6}
+summary_archetype_data = student_certificate_data |>
+    filter(fully_participated_at != "") |> # Filter only learners who finished
+    group_by(certificate_purchased, archetype) |>
+    summarize(count = n(), .groups = "drop")
+
+ggplot(summary_archetype_data, aes(x = certificate_purchased, y = count, fill = archetype))+
+    geom_bar(stat = "identity", position = "stack", color = "white") +  # Stacked bars
+    labs(
+        title = "Counts of Certificates by Archetype (Full Participants)",
+        x = "Certificate Purchased",
+        y = "Count",
+        fill = "Learner Archetype"
+        ) +
+    scale_x_discrete(labels = c("TRUE" = "Purchased", "FALSE" = "Not Purchased")) +
+    scale_fill_manual(values = archetype_colours) + # Add custom colours
+    theme_minimal() +
+    theme(
+        plot.title = element_text(hjust = 0.5),
+        panel.grid.major.x = element_blank() # Remove Vertical grid lines
+        )
+```
+
+The above stacked column chart shows counts of students who finished the program, separated into certificate purchases and archetypes. This gives some insight into what types of students are purchasing certificates at the end of the course. Notably hobbyists, who enroll on the program for personal interests, are very unlikely to purchase a certificate. This would co-inside with the perception that they are simply doing the course out of interest and therefore wouldn't be interested in an official certificate. On the other hand, advancers, explorers and vitalisers are the biggest purchases of certificates amongst students who complete the course.
+
+Furthermore, although preparers make up a large proportion of learners who have completed the course they are highly unlikely to purchase a certificate. If shareholders would like to increase the amount of certificate purchases this online course receives perhaps working to have more advancers, explorers and vitalisers enroll on the course would lead to a substantial increase in purchases.
 
 ## References
