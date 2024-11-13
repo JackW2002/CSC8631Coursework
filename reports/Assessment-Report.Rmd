@@ -399,6 +399,8 @@ ggplot(student_certificate_data ,
         legend.position = "none",
         )
 
+ggsave("graphs/score_distrovution_by_certificates.png", width = 8, height = 6, units = "in")
+
 ```
 
 Interestingly we can see that students who did not purchase a certificate at the end of their course actually performed on average better than students who purchased the certificate. It is also apparent that the cohort of students who did not purchase certificates were more likely to perfectly answer all of their questions, and therefore be probable cheaters. This graph seems to detract from the idea that student performance has a direct correlation to purchase chance.
@@ -426,6 +428,10 @@ ggplot(summary_archetype_data, aes(x = certificate_purchased, y = count, fill = 
         plot.title = element_text(hjust = 0.5),
         panel.grid.major.x = element_blank() # Remove Vertical grid lines
         )
+
+ggsave("graphs/count_of_certificates_by_archetype.png", width = 8, height = 6, units = "in")
+
+
 ```
 
 The above stacked column chart shows counts of students who finished the program, separated into certificate purchases and archetypes. This gives some insight into what types of students are purchasing certificates at the end of the course. Notably hobbyists, who enroll on the program for personal interests, are very unlikely to purchase a certificate. This would co-inside with the perception that they are simply doing the course out of interest and therefore wouldn't be interested in an official certificate. On the other hand, advancers, explorers and vitalisers are the biggest purchases of certificates amongst students who complete the course.
