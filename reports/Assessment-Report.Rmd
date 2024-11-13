@@ -257,7 +257,7 @@ ggsave("graphs/archetype_score_density.png", width = 8, height = 6, units = "in"
 
 ```
 
-To see if learner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.References
+To see if learner archetypes can be a good predictor of a students overall performance I ridge plot has been created using ggridges. This plot shows the density of score distributions for each archetype, whilst separating each archetype on a new line and different colour to allow for easy comparison between groups. As I am only interested in the 8 leaner archetypes students who did not fall into one of these, and instead received "other", have been removed from the plot.
 
 From Fig 2 we can see how each of the eight archetypes are performing on the program quizzes. I have also added the mean correct answer percents to each archetype to allow for further comparison between groups. From the plot we can see that there are some noticeable differences in performance across difference archetypes. For example vitalisers and advancers seem to be performing the best on these quizzes, having the highest means and more right-sided distributions. However, when examining the flourishers archetype (which is the lowest scores) care needs to be used as this archetype has the smallest sample set. This is apparent when looking at the bumps in their distribution, which are more pronounced than others, signifying that outliers are having a dramatic effect on the group.
 
@@ -309,5 +309,15 @@ Now that analysis on my first CRISP-DM cycle has concluded I can move one to the
 Some interesting data on the amount of each archetype present in the data set has also been found. With specifically vitalisers being a very common archetype for students partaking in this online course. Focusing more on the initial research question the distribution graph from figure two appears to show little difference between archetype performance for the program overall. However, after producing a heat map of archetype performance across each step we can see that performance is not as similar as previously thought. It seems that archetype performance does change significantly depending on the step of the program student's are being quizzed on.
 
 This leads to the conclusion that archetype performance could be a decent indicator of student performance when taking into account the step the student is in and not just looking at overall performance. Therefore, I believe that this first cycle of CRISP-DM has provided reasonable evidence that student archetype could be a good indicator of student performance. However, the differences in performance are too small for intervention of one specific archetype to be useful as they tend to differ by only around 10%. It may be the case that multiple predictors for each student would need to be used to predict how they will perform on the course.
+
+# CRISP-DM Cycle 2
+
+## Business Undestanding
+
+Now that my first cycle of CRISP-DM has been completed I will now begin work on cycle 2. This cycle will be used to investigate other aspects of the data set which would be relevant to shareholders. After evaluating cycle 1 I believe some fairly interesting relationships have been found. Mainly that archetype, although having an affect, is not that strong of a predictor of student performance. This is likely due to student performance being a complex variable with a lot of student data effecting it. Perhaps making this task too hard to complete for now. Therefore for my second cycle i will be shifting my data analysis goals.
+
+This cycle will be used to analyze how student performance and archetype effect weather a participant is likely to purchase a certificate at the end of the program. This analysis could help shareholders make business decisions about running future MOOC programs, and come up with ways they can increase the number of certificate purchases. If more learners were willing to purchase certificates at the end of the program this could provide valuable funding for the program. Therefore, the question I will be proposing for this cycle is:
+
+**"What makes students likely to purchase a certificate?"**
 
 ## References
