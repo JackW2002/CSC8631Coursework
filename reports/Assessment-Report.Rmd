@@ -440,4 +440,10 @@ Although it may seem obvious to expect students who performed well to be more li
 
 Overall, several interesting discoveries about this data set have been uncovered by this cycle of CRISP-DM. With the research question being partly answered by the relationships I have uncovered. These findings would prove useful for any Newcastle University shareholders who would like to increase the amount of certificate purchases their online program sees.
 
+## Deployment
+
+Now that both cycles of my CRISP-DM data analysis have completed I can move onto my final step deployment. This step produces several deliverables produces so that the analysis that has occurred can be viewed and learned from. For my project two deliverables have been produces to ensure the deployment phase has been correctly completed. First, this report which covers all of my analysis and findings. My report aims to provide answers to two research questions proposed in the business understanding stage. Answers to these questions are then provided with a variety of figures, produced throughout the report and analysis.
+
+Finally, i have created a presentation, which covers the main findings i have discovered through my cycles. The figures produced for this report are utalised in this presentation to provide extra information to viewers and to help bolster the analysis I am discussing. Thus by producing these two deliverables i have deployed my findings so that shareholders can use my work to make business level decisions.
+
 ## References
