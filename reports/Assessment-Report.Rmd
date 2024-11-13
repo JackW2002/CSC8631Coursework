@@ -432,4 +432,12 @@ The above stacked column chart shows counts of students who finished the program
 
 Furthermore, although preparers make up a large proportion of learners who have completed the course they are highly unlikely to purchase a certificate. If shareholders would like to increase the amount of certificate purchases this online course receives perhaps working to have more advancers, explorers and vitalisers enroll on the course would lead to a substantial increase in purchases.
 
+## Evaluation
+
+This second run of CRISP-DM has led several interesting pieces analysis. The question "What makes students likely to purchase a certificate?" has been fairly answered by my analysis. By far the most important aspect of whether a learner will purchase a certificate is getting them to complete the course. The vast majority of students did not fully participate in the course on runs 3-7 and therefore very few purchases were made. However when controlling for students who completed the course many more purchases were made, jumping from just 4% to 37%.
+
+Although it may seem obvious to expect students who performed well to be more likely to make a purchase, this was actually not the case. This is apparent in figure 4, a violin graph showing the distribution of correct question answers between students who purchased and those who didn't. Furthermore, student archetype seems to play a key role in purchases of certificates. As seen in figure 5, some archetypes, such as advancers were far more likely to purchase a certificate then others like preparers; even when controlling for only full participants.
+
+Overall, several interesting discoveries about this data set have been uncovered by this cycle of CRISP-DM. With the research question being partly answered by the relationships I have uncovered. These findings would prove useful for any Newcastle University shareholders who would like to increase the amount of certificate purchases their online program sees.
+
 ## References
