@@ -332,7 +332,7 @@ This was then merged with the previously created `student_grades` data frame to 
 
 ## Modelling
 
-I will now begin the modelling stage of my second CRISP-DM cycle. The modelling performed in this section is done with the aim of exposing relationships between the variables found in the `student_certificate_data` data frame and certificate purchases. With the goal of discorvering what makes learners more likely to purchase certificates at the end of their course.
+I will now begin the modelling stage of my second CRISP-DM cycle. The modelling performed in this section is done with the aim of exposing relationships between the variables found in the `student_certificate_data` data frame and certificate purchases. With the goal of discovering what makes learners more likely to purchase certificates at the end of their course.
 
 ### Initial Exploration
 
