@@ -322,12 +322,34 @@ This cycle will be used to analyze how student performance and archetype effect 
 
 ## Data Understanding
 
-For this analysis a similar data will be used. With the addition of `x_enrolments` data. This data frame contains enrollment information on every student who participated in the program. Crucially it records pruchased_statement_at which records the date each student has purchased a certificate at. This column is left blank when no purchase was made, making it simple to see weather each student ended up purchasing a certificate after they were done with the program. Since I am still interested in if archetype data effects purchase probability data from rune 3-7 will be used so that students can be tied to their archetype.
+For this analysis similar data from the fist cycle will be used, with the addition of `x_enrolments` data. This data frame contains enrollment information on every student who participated in the program. Crucially it records pruchased_statement_at which records the date each student has purchased a certificate at. This column is left blank when no purchase was made, making it simple to see weather each student ended up purchasing a certificate after they were done with the program. Since I am still interested in if archetype data effects purchase probability, data from runs 3-7 will be used so that students can be tied to their archetype.
 
 ## Data Preparation
 
 For analysis to occur on student purchase chance a new data frame must be created which records each learner, their archetype, percent_correct and weather they purchased a certificate from the program. The first step for this was to merge enrollment data from runs 3-7, which has been done in the `07-Combine-enrolments` R script. interestingly this lead to the merged_enrolments data frame having multiple instances of the the same learner_ids, this has likely happened from the same learners repeating the course throughout it's runs. This data was kept so that learners who repeated the course and purchased certificates at different runs would have their data retained for analysis.
 
-This was then merged with the previously created `student_grades` data frame to create student_grades_certificates, in the 8-Create-student-certificate R script. The resulting data frame store the same grade, student id and archetype data as well as their certificate purchase date. The decision was made to use an inner join for this so that the data frame created had all the necessary data for modelling. Finally so that it was easy to determine weather a student made a certificate purchase or not a new Boolean column (certificate_purchased) was added.
+This was then merged with the previously created `student_grades` data frame to create student_grades_certificates, in the `8-Create-student-certificate` R script. The resulting data frame stores grade, student id and archetype data as well as their certificate purchase date. The decision was made to merge these tables using an inner join, so that the students in the merged frame have all the necessary data for modelling. Finally so that it was easy to determine weather a student made a certificate purchase or not a new Boolean column (certificate_purchased) was added using dplyr's mutate() function.
+
+## Modelling
+
+I will now begin the modelling stage of my second CRISP-DM cycle. The modelling performed in this section is done with the aim of exposing relationships between the variables found in the `student_certificate_data` data frame and certificate purchases. With the goal of discorvering what makes learners more likely to purchase certificates at the end of their course.
+
+### Initial Exploration
+
+```{r certificate_purchase_count, echo=FALSE, tab.cap="Certificate purchase count"}
+# Summerise number of purchases
+summary_table = student_certificate_data |>
+    group_by(certificate_purchased) |>
+    summarise(
+        count = n(),
+        percent = (n() / nrow(student_certificate_data)) * 100)
+
+# Display as table
+summary_table |>
+    kable(digits = 1, col.names = c("Certificate Purchased", "Count", "Percent of total"),
+          align = "c")
+```
+
+As we can see from the above table students as a whole are quite unlikely to purchase a certificate from the program, with less than 95.7% of students not making a purchase. Whilst this will partly be due to students dropping out of the course below completion this is still quite a low figure. Furthermore, this will make finding correlations for purchasing certificates harder as there will be a smaller sample set to make determinations about.
 
 ## References
