@@ -324,4 +324,10 @@ This cycle will be used to analyze how student performance and archetype effect 
 
 For this analysis a similar data will be used. With the addition of `x_enrolments` data. This data frame contains enrollment information on every student who participated in the program. Crucially it records pruchased_statement_at which records the date each student has purchased a certificate at. This column is left blank when no purchase was made, making it simple to see weather each student ended up purchasing a certificate after they were done with the program. Since I am still interested in if archetype data effects purchase probability data from rune 3-7 will be used so that students can be tied to their archetype.
 
+## Data Preparation
+
+For analysis to occur on student purchase chance a new data frame must be created which records each learner, their archetype, percent_correct and weather they purchased a certificate from the program. The first step for this was to merge enrollment data from runs 3-7, which has been done in the `07-Combine-enrolments` R script. interestingly this lead to the merged_enrolments data frame having multiple instances of the the same learner_ids, this has likely happened from the same learners repeating the course throughout it's runs. This data was kept so that learners who repeated the course and purchased certificates at different runs would have their data retained for analysis.
+
+This merged_enrolments data frame then had students correct_percent and archetypes added in the `08-Create-student-certificate` R script. In cases where students had multiple archetypes recorded the most recent one was used in a process similar to cycle 1 of analysis.
+
 ## References
