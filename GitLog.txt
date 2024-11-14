@@ -1,0 +1,257 @@
+commit c8ec1cc00920bee50c691afe8b3becf40db02033
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:44:23 2024 +0000
+
+    Update README to list deliverables and dependencies
+
+commit 82b45cbb39e5d006d5d534cdaee1bccf3ed0ceb2
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:33:45 2024 +0000
+
+    Fix spelling mistake
+
+commit 170fe0348fdd94375506857f5881c59634c7088a
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:33:02 2024 +0000
+
+    Add save for figures
+
+commit c54e523e5ee70238d5bda4d02a465ceed8af5057
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:30:37 2024 +0000
+
+    Add deployment section
+
+commit 151025dfc6259374c1007c6b4085121a648dc9fd
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:20:51 2024 +0000
+
+    Add evaluatio section
+
+commit 03dea541970650d5ea91001f854050f996d63ada
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 23:04:25 2024 +0000
+
+    completed modelling section of cycle 2
+
+commit 0ef12c71c9e73da9406612ff8eae8e55f4f5e99e
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 19:59:28 2024 +0000
+
+    Add initial exploration to modelling cycle 2
+
+commit 53a5ba5af30b15058d9065cca6e988b73f3fb4d3
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 19:52:00 2024 +0000
+
+    Add kable package to project
+
+commit 0a346c8f744cfc6ba9ff64b7967de3ce21a673bb
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 14:26:45 2024 +0000
+
+    add student certificate pre processing
+
+commit e6df8f58162f4f5a411b42cde8beeee2a56103ea
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 14:07:29 2024 +0000
+
+    add enrolments combine script to munge
+
+commit b83cc90387119c4d1239adb5e9e74e0f1bbc7ae8
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 13:51:46 2024 +0000
+
+    Add data understanding to report
+
+commit 1e75dd6a860bf52ae523d0c79645cfe87f4e18c2
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Wed Nov 13 13:07:27 2024 +0000
+
+    Add cycle 2 business understanding
+
+commit 6a3e9aeb872b2c96869a60b77446f7795824e840
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 23:29:25 2024 +0000
+
+    add evaluation section to report
+
+commit 3904fbca408de2fe970a15d0573beb582d970f55
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 23:09:27 2024 +0000
+
+    Add heat map analysis
+
+commit 18a7fe28af3f836e95d7562c989a409ea75340ea
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 20:09:21 2024 +0000
+
+    Add archetype score distribution analysis
+
+commit d3732d0accbe454f5233aad441f8c0237487ceae
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 19:34:04 2024 +0000
+
+    add scales package and % to distrobution plot
+
+commit 42991950a10a7bc5c54295ab8caab9c7e6d50d9a
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 19:24:59 2024 +0000
+
+    Tidied RMD to knit better
+
+commit be23618dff1fe372e8319ec7ea07075f5441ad01
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 19:16:31 2024 +0000
+
+    Add archetype score density plot
+
+commit 791d9912df6ed543d6974c4a59634cf137367d04
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 18:44:13 2024 +0000
+
+    Add archetype distributions section
+
+commit 54255e8f7e9ce3dc79fe62385f30a101fc9e149f
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 16:49:45 2024 +0000
+
+    Added ggridges to renv and project
+
+commit c183ff936e61661527396b8ab4cff739b9b6f248
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 16:38:15 2024 +0000
+
+    Add count plot for modelling section
+
+commit 8a03e778f960a421481aea45131f671529845375
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 16:03:10 2024 +0000
+
+    Add intro to modeling section
+
+commit 167858280a9b53bfaae130dd256b31e77d080009
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Tue Nov 12 00:30:53 2024 +0000
+
+    Add student grade calculations
+
+commit bde4085824aad0172baf8b5308e7b17714403f5d
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 22:00:48 2024 +0000
+
+    Add merging questions and student archetypes
+
+commit ac8da61c8f91d660e57c8c6240f61ee860e0345d
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 21:58:37 2024 +0000
+
+    Add remove duplicates to preprocessing
+
+commit ead854f42659249c8546ffe701ae7115e53fdde6
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 16:11:13 2024 +0000
+
+    Add mergind of archetype dataframes in munge
+
+commit 585de77de5cf4d16875230f285ecf74f409fc849
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 16:07:46 2024 +0000
+
+    Add caching to question merge df
+
+commit 01194192cb75bd6bc154470fce08c0a0ef358e25
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 16:04:12 2024 +0000
+
+    Add question response data frame merging
+
+commit 4f1f94b342df00d114da07c594615dae3dceb2ef
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 15:53:12 2024 +0000
+
+    Add data transformations section
+
+commit a74374075a257e0d8b455a0a95c8651218f41d73
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 15:07:24 2024 +0000
+
+    Add into for Data Preperation
+
+commit 14e92649d039b880cefdbf0a99cd6858737a7275
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Mon Nov 11 00:02:27 2024 +0000
+
+    Finished Data Understanding section
+
+commit 3347bc16c7b893b7ace4223957b23d76c848b996
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Sun Nov 10 23:41:27 2024 +0000
+
+    Add checks for empty frames and variable name similatires
+
+commit 46969072d146d219ee5a63642f469d93749a0633
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Sun Nov 10 22:08:12 2024 +0000
+
+    Add table for data exploration section
+
+commit 009279e912cc2f374bf11893063271211867f4a9
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Sun Nov 10 16:23:04 2024 +0000
+
+    Add Data Collection Section
+
+commit fb882d9099e0e67f46fde993902353b277d8251c
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Sun Nov 10 15:07:20 2024 +0000
+
+    add data understanding intro
+
+commit 1bc82d366c530fd4348f0ad6cfece1b7f4681461
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 8 19:42:59 2024 +0000
+
+    add Business understanding and bib
+
+commit cfac6c5e3aac3befaac9207a4f7d885e1a02931f
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 8 18:06:59 2024 +0000
+
+    add Intro section to report
+
+commit f9324041fc94620280dac19aa2063b43d57d2ee8
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 8 17:23:24 2024 +0000
+
+    add r enviroment files to .gitignore
+
+commit 5299ed525302c29be5f7894996855295b8be65ef
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 1 11:24:05 2024 +0000
+
+    cleaned messages and warning from project load chunk
+
+commit 4c661a2292f28e288f965440d9cada144dd0dbe1
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 1 11:17:16 2024 +0000
+
+    setup renv
+
+commit 9550461bba338cc90a350fb411d3fb06e03c6c8f
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 1 11:12:05 2024 +0000
+
+    add docs and setup rmarkdown
+
+commit c8b6d1a3955650219b2df2379cc220c4f40fc2c9
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 1 10:48:28 2024 +0000
+
+    removed cache and data from git (woops)
+
+commit e9cdda26f4eba4440aa9a9f901b7c28ad5cfa434
+Author: JackW2002 <jackwestmoreland2002@gmail.com>
+Date:   Fri Nov 1 10:35:09 2024 +0000
+
+    initial commit

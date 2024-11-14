@@ -298,6 +298,9 @@ ggplot(heatmap_data, aes(x = step_number, y = archetype, fill = percent_correct)
     theme(
         plot.title = element_text(hjust = 0.5)
     )
+
+ggsave("graphs/heat_map_performance_by_archetype.png", width = 8, height = 6, units = "in")
+
 ```
 
 From the heat map shows in figure 3 we can how each archetype has performed over each step in the program. Firstly we can see a large difference in performance for all students between steps 8 & 20 vs steps 11 & 18. Perhaps indicating that the quizzes in the middle of the program are easier. We can also see that there appears to be some noticeable differences in performance between archetypes for specific steps. For example advancers are largely outperforming other archetypes during step 20. This relationship does not appear to be as simple as advancers always outperforming other archetypes as in earlier analysis this difference is not as apparent. Furthermore, we can now see that for each step a different archetype is outperforming others. Step 11 has fixers outperforming others and vitalisers are performing best during step 8, this was not apparent in earlier analysis.
