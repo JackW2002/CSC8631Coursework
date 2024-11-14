@@ -353,7 +353,7 @@ summary_table |>
           align = "c")
 ```
 
-As we can see from the above table students as a whole are quite unlikely to purchase a certificate from the program, with less than 95.7% of students not making a purchase. Whilst this will partly be due to students dropping out of the course below completion this is still quite a low figure. Furthermore, this will make finding correlations for purchasing certificates harder as there will be a smaller sample set to make determinations about.
+As we can see from the above table, students as a whole are quite unlikely to purchase a certificate from the program with less than 95.7% of students not making a purchase. Whilst this will partly be due to students dropping out of the course before completion this is still quite a low figure. Because of this finding correlations for certificates purchases will be harder, as there will be a smaller sample set to make determinations about.
 
 ```{r summary_table_only_completed, echo=FALSE, tab.cap="Purchase Count for Studets Who Fully Participated"}
 summary_table_completed = student_certificate_data |>
@@ -370,11 +370,11 @@ summary_table_completed |>
           align = "c")
 ```
 
-As we can see amongst students who fully participated (completed) the course purchase rate was much higher. With 37.3% of these students purchasing a certificate it seems that a large factor for weather a student purchases a certificate or not is weather they actually completed the course. This implies that if shareholders would like purchases to increase a push on getting students to fully complete the course could be important.
+Among students who fully participated in the course purchase rates where much higher. With 37.3% of these students purchasing a certificate it seems that a large factor for whether a student purchases a certificate or not is weather they have actually completed the course. This implies that if shareholders would like purchases to increase a push on getting students to fully complete the course could be important.
 
 ### Score Purchase Violin Graph
 
-One variable impacting purchase chance could be the students performance in quizzes. Learners who are performing well in quizzes will likely be understanding the material better, be more invested and therefore upon completion of the course more likely to purchase a certificate. To see if this holds a violin plot can be created using ggplot2 showing percent_correct scores for both purchased and not purchased students.
+One variable impacting purchase chance could be the students performances in quizzes. Learners who are performing well in quizzes will likely be understanding the material better, be more invested and therefore upon completion of the course more likely to purchase a certificate. To see if this holds a violin plot can be created using ggplot2 showing percent_correct scores for both purchased and not purchased students.
 
 ```{r purchase_rate_violion_plot, echo=FALSE, fig.align='center', fig.cap="Violin Score Distribution by Purchases"}
 # Calculate purchased means
@@ -443,7 +443,7 @@ Furthermore, although preparers make up a large proportion of learners who have 
 
 ## Evaluation
 
-This second run of CRISP-DM has led several interesting pieces analysis. The question "What makes students likely to purchase a certificate?" has been fairly answered by my analysis. By far the most important aspect of whether a learner will purchase a certificate is getting them to complete the course. The vast majority of students did not fully participate in the course on runs 3-7 and therefore very few purchases were made. However when controlling for students who completed the course many more purchases were made, jumping from just 4% to 37%.
+This second run of CRISP-DM has led several interesting pieces of analysis. The question "What makes students likely to purchase a certificate?" has been answered fairly well by my analysis. By far the most important aspect of whether a learner will purchase a certificate is getting them to complete the course. The vast majority of students did not fully participate in the course on runs 3-7 and therefore very few purchases were made. However when controlling for students who completed the course many more purchases were made, jumping from just 4% to 37%.
 
 Although it may seem obvious to expect students who performed well to be more likely to make a purchase, this was actually not the case. This is apparent in figure 4, a violin graph showing the distribution of correct question answers between students who purchased and those who didn't. Furthermore, student archetype seems to play a key role in purchases of certificates. As seen in figure 5, some archetypes, such as advancers were far more likely to purchase a certificate then others like preparers; even when controlling for only full participants.
 
@@ -451,7 +451,7 @@ Overall, several interesting discoveries about this data set have been uncovered
 
 ## Deployment
 
-Now that both cycles of my CRISP-DM data analysis have completed I can move onto my final step deployment. This step produces several deliverables produces so that the analysis that has occurred can be viewed and learned from. For my project two deliverables have been produces to ensure the deployment phase has been correctly completed. First, this report which covers all of my analysis and findings. My report aims to provide answers to two research questions proposed in the business understanding stage. Answers to these questions are then provided with a variety of figures, produced throughout the report and analysis.
+Now that both cycles of my CRISP-DM data analysis have completed I can move onto my final step deployment. This step produces several deliverables produces so that the analysis that has occurred can be viewed and learned from. For my project two deliverables have been produced to ensure the deployment phase has been correctly completed. First, this report which covers all of my analysis and findings. My report aims to provide answers to two research questions proposed in the business understanding stage. Answers to these questions are then provided with a variety of figures, produced throughout the report and analysis.
 
 Finally, i have created a presentation, which covers the main findings i have discovered through my cycles. The figures produced for this report are utalised in this presentation to provide extra information to viewers and to help bolster the analysis I am discussing. Thus by producing these two deliverables i have deployed my findings so that shareholders can use my work to make business level decisions.
 
