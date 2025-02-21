@@ -1,6 +1,6 @@
 # R-Data Analysis
 
-![image](https://github.com/user-attachments/assets/462a3e5a-58a2-4a2c-b37f-8688cf1b5a6f)
+<img src="https://github.com/user-attachments/assets/462a3e5a-58a2-4a2c-b37f-8688cf1b5a6f" width="800" height="500" />
 
 An R project which uses industry standad frameworks and libraries to produce 2 Crisp-DM cycles of analysis and data exploration on a real dataset of student performance metrics. 
 
